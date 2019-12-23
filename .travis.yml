@@ -6,9 +6,10 @@ matrix:
       os: windows
       language: shell
       before_install:
-        - choco install python
+        # - choco install python
         # - choco install python --version 3.8.1
-        - choco install anaconda3
+        - choco install anaconda3 && conda update conda && conda update anaconda
+        - conda info && conda list anaconda$
       env:
         - PATH=/c/Python37:/c/Python37/Scripts:/c/tools/bin:$PATH**
 install:
@@ -19,8 +20,8 @@ install:
       # - pip --version
       # upgrade PIP
       # - python -m pip install --upgrade pip
-      # conda install virtualenv
-      - pip install virtualenv
+      - conda install virtualenv
+      # - pip install virtualenv
       # - virtualenv myenv
       # same directory
       # - myenv\Scripts\activate

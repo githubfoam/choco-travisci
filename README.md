@@ -4,4 +4,5 @@
 
 ~~~~
 <https://travis-ci.community/c/environments/windows>
+<https://docs.travis-ci.com/user/reference/windows/>
 ~~~~
