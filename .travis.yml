@@ -13,9 +13,16 @@ install:
       # Enable running local PowerShell scripts
       - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
       # pip install via choco
-      - cinst python
-      - cinst easy.install
-      - cinst pip
+      - cinst anaaconda3
+      # - pip --version
+      # upgrade PIP
+      # - python -m pip install --upgrade pip
+      # - pip install virtualenv
+      # - virtualenv myenv
+      # same directory
+      # - myenv\Scripts\activate
+      # - myenv\Scripts\activate.bat
+      # - deactivate
 
 script:
     - python --version
