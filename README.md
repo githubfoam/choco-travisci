@@ -1,2 +1,7 @@
 # choco-travisci
-chocolatey  python powershell windows travis
+
+ [![Build Status](https://travis-ci.com/githubfoam/choco-travisci.svg?branch=win)](https://travis-ci.com/githubfoam/choco-travisci)  
+
+~~~~
+
+~~~~

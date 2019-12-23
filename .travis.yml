@@ -1,0 +1,18 @@
+---
+
+matrix:
+  include:
+    - name: "Python 3.8"
+      os: windows
+      language: shell
+      before_install:
+        - choco install python
+      env:
+        - PATH=/c/Python37:/c/Python37/Scripts:/c/tools/bin:$PATH**
+install:
+      # Enable running local PowerShell scripts
+      - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
+
+script:
+    - python --version
+    - choco --version
