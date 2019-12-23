@@ -7,6 +7,7 @@ matrix:
       language: shell
       before_install:
         - choco install python
+        # - choco install python --version 3.8.1
         - choco install anaconda3
       env:
         - PATH=/c/Python37:/c/Python37/Scripts:/c/tools/bin:$PATH**
@@ -18,7 +19,8 @@ install:
       # - pip --version
       # upgrade PIP
       # - python -m pip install --upgrade pip
-      # - pip install virtualenv
+      # conda install virtualenv
+      - pip install virtualenv
       # - virtualenv myenv
       # same directory
       # - myenv\Scripts\activate
