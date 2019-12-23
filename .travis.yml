@@ -7,13 +7,14 @@ matrix:
       language: shell
       before_install:
         - choco install python
+        - choco install anaconda3
       env:
         - PATH=/c/Python37:/c/Python37/Scripts:/c/tools/bin:$PATH**
 install:
       # Enable running local PowerShell scripts
       - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
       # pip install via choco
-      - cinst anaaconda3
+      # - cinst anaaconda3
       # - pip --version
       # upgrade PIP
       # - python -m pip install --upgrade pip
