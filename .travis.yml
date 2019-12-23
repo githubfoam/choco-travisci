@@ -12,6 +12,10 @@ matrix:
 install:
       # Enable running local PowerShell scripts
       - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
+      # pip install via choco
+      - cinst python
+      - cinst easy.install
+      - cinst pip
 
 script:
     - python --version
