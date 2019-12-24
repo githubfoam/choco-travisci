@@ -9,7 +9,7 @@ matrix:
         # - choco install python
         - choco install python --version 3.8.1
         # - choco install anaconda3 && conda update conda && conda update anaconda
-        # - choco install anaconda3
+        - choco install anaconda3
         # - conda update --all
         # - conda info
         # - conda list anaconda$
