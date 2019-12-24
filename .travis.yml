@@ -11,10 +11,11 @@ matrix:
       before_install:
         - choco install python --version 3.8.1
         - python -m pip install --upgrade pip
+        - conda -V
         # - choco install anaconda3 && conda update conda && conda update anaconda
-        - choco install anaconda3
-        - conda info
-        - conda list anaconda$
+        # - choco install anaconda3
+        # - conda info
+        # - conda list anaconda$
         # - conda update --all
 install:
       # Enable running local PowerShell scripts
