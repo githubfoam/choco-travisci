@@ -3,68 +3,45 @@ matrix:
   fast_finish: true
   include:
 
-    # - name: "virtual environment anaconda windows"
-    #   os: windows
-    #   language: shell
-    #   # env:
-    #   #   - PATH=/c/Python38:/c/Python38/Scripts:$PATH
-    #   before_install:
-    #     # - choco install python --version 3.8.1
-    #     # - python -m pip install --upgrade pip
-    #     - choco install anaconda3
-    #     - echo %PATH%
-    #     - conda -V
-    #     # - choco install anaconda3 && conda update conda && conda update anaconda
-    #     # - conda info
-    #     # - conda list anaconda$
-    #     # - conda update --all
-    #   install:
-    #         # Enable running local PowerShell scripts
-    #         - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
-    #         # pip install via choco
-    #         # - cinst anaaconda3
-    #         # - pip --version
-    #         # upgrade PIP
-    #         # - python -m pip install --upgrade pip
-    #         # - conda install virtualenv
-    #         # - pip install virtualenv
-    #         # - virtualenv myenv
-    #         # same directory
-    #         # - myenv\Scripts\activate
-    #         # - myenv\Scripts\activate.bat
-    #         # - deactivate
-    #   script:
-    #       - python --version
-    #       - choco --version
+    - name: "Python 3.8 on Windows"
+      os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
+      language: shell
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      before_install:
+        - choco install python --version 3.8.1
+        - python -m pip install --upgrade pip
+        - pip3 install --upgrade pytest
+        - pip3 install codecov
+        - pip3 install virtualenv
+        - virtualenv $HOME/venvpy3
+        - source $HOME/venvpy3/Scripts/activate
+      install:
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip3 install -r requirements.txt
+      script:
+        - pip3 list
+      after_success:
+        - deactivate
 
-    - name: "virtual environment miniconda windows"
+
+    - name: "Python 3.7 pinned chocolatey package on Windows"
       os: windows
       language: shell
-      # env:
-      #   - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
       before_install:
-        - choco install miniconda3
-        - echo %PATH%
-        - dir C:\tools\miniconda3
-        # - choco install anaconda3 && conda update conda && conda update anaconda
-        # - conda info
-        # - conda list anaconda$
-        # - conda update --all
+        - choco install python --version 3.7.3
+        - python -m pip install virtualenv
+        - virtualenv $HOME/venv
+        - source $HOME/venv/Scripts/activate
       install:
-            # Enable running local PowerShell scripts
-            - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
-            # pip install via choco
-            # - cinst anaaconda3
-            # - pip --version
-            # upgrade PIP
-            # - python -m pip install --upgrade pip
-            # - conda install virtualenv
-            # - pip install virtualenv
-            # - virtualenv myenv
-            # same directory
-            # - myenv\Scripts\activate
-            # - myenv\Scripts\activate.bat
-            # - deactivate
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip3 install -r requirements.txt
       script:
-          - python --version
-          - choco --version
+        - pip3 list
+      after_success:
+        - deactivate
