@@ -8,10 +8,14 @@ matrix:
       before_install:
         # - choco install python
         # - choco install python --version 3.8.1
-        - choco install anaconda3 && conda update conda && conda update anaconda
-        - conda info && conda list anaconda$
+        # - choco install anaconda3 && conda update conda && conda update anaconda
+        - choco install anaconda3
+        - conda update --all
+        - conda info
+        - conda list anaconda$
       env:
-        - PATH=/c/Python37:/c/Python37/Scripts:/c/tools/bin:$PATH**
+        # - PATH=/c/Python37:/c/Python37/Scripts:/c/tools/bin:$PATH**
+        - PATH=/c/Python38:/c/Python37/Scripts:/c/tools/bin:$PATH**
 install:
       # Enable running local PowerShell scripts
       - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
