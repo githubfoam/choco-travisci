@@ -45,7 +45,7 @@ matrix:
       before_install:
         - choco install miniconda3
         - echo %PATH%
-        - conda -V
+        - dir C:\tools\miniconda3
         # - choco install anaconda3 && conda update conda && conda update anaconda
         # - conda info
         # - conda list anaconda$
