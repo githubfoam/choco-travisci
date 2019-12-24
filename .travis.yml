@@ -3,49 +3,17 @@ matrix:
   fast_finish: true
   include:
 
-    - name: "virtual environment anaconda windows"
-      os: windows
-      language: shell
-      # env:
-      #   - PATH=/c/Python38:/c/Python38/Scripts:$PATH
-      before_install:
-        # - choco install python --version 3.8.1
-        # - python -m pip install --upgrade pip
-        - choco install anaconda3
-        - conda -V
-        - echo %PATH%
-        # - choco install anaconda3 && conda update conda && conda update anaconda
-        # - conda info
-        # - conda list anaconda$
-        # - conda update --all
-      install:
-            # Enable running local PowerShell scripts
-            - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
-            # pip install via choco
-            # - cinst anaaconda3
-            # - pip --version
-            # upgrade PIP
-            # - python -m pip install --upgrade pip
-            # - conda install virtualenv
-            # - pip install virtualenv
-            # - virtualenv myenv
-            # same directory
-            # - myenv\Scripts\activate
-            # - myenv\Scripts\activate.bat
-            # - deactivate
-      script:
-          - python --version
-          - choco --version
-
-    # - name: "virtual environment conda windows"
+    # - name: "virtual environment anaconda windows"
     #   os: windows
     #   language: shell
     #   # env:
     #   #   - PATH=/c/Python38:/c/Python38/Scripts:$PATH
     #   before_install:
-    #     # - choco install anaconda3
-    #     - conda -V
+    #     # - choco install python --version 3.8.1
+    #     # - python -m pip install --upgrade pip
+    #     - choco install anaconda3
     #     - echo %PATH%
+    #     - conda -V
     #     # - choco install anaconda3 && conda update conda && conda update anaconda
     #     # - conda info
     #     # - conda list anaconda$
@@ -68,3 +36,35 @@ matrix:
     #   script:
     #       - python --version
     #       - choco --version
+
+    - name: "virtual environment miniconda windows"
+      os: windows
+      language: shell
+      # env:
+      #   - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      before_install:
+        - choco install miniconda3
+        - echo %PATH%
+        - conda -V
+        # - choco install anaconda3 && conda update conda && conda update anaconda
+        # - conda info
+        # - conda list anaconda$
+        # - conda update --all
+      install:
+            # Enable running local PowerShell scripts
+            - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
+            # pip install via choco
+            # - cinst anaaconda3
+            # - pip --version
+            # upgrade PIP
+            # - python -m pip install --upgrade pip
+            # - conda install virtualenv
+            # - pip install virtualenv
+            # - virtualenv myenv
+            # same directory
+            # - myenv\Scripts\activate
+            # - myenv\Scripts\activate.bat
+            # - deactivate
+      script:
+          - python --version
+          - choco --version
