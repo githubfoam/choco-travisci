@@ -3,7 +3,7 @@ matrix:
   fast_finish: true
   include:
 
-    - name: "Python 3.8 on Windows"
+    - name: "osquery on Windows"
       os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
       language: shell
       env:
@@ -17,33 +17,84 @@ matrix:
         - virtualenv $HOME/venvpy3
         - source $HOME/venvpy3/Scripts/activate
       install:
-        - pip3 install -U pip
-        - pip3 install -U pytest
-        - pip3 install codecov
+        # - pip3 install -U pip
+        # - pip3 install -U pytest
+        # - pip3 install codecov
         - pip3 install -r requirements.txt
+        - choco install osquery --params='/InstallService'
       script:
-        - pip3 list
+        - Start-service osqueryd
+        - Get-Service | Where-Object {$_.name -eq “osqueryd”}
+        - osqueryd --flagfile=C:\ProgramData\osquery\osquery.flags --config_path=C:\ProgramData\osquery\osquery.conf
+      after_success:
+        - deactivate
+
+    - name: "anaconda on Windows"
+      os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
+      language: shell
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      before_install:
+        - choco install python --version 3.8.1
+        - python -m pip install --upgrade pip
+        - pip3 install --upgrade pytest
+        - pip3 install codecov
+        - pip3 install virtualenv
+        - virtualenv $HOME/venvpy3
+        - source $HOME/venvpy3/Scripts/activate
+      install:
+        # - pip3 install -U pip
+        # - pip3 install -U pytest
+        # - pip3 install codecov
+        - pip3 install -r requirements.txt
+        - cinst anaconda3
+      script:
+        - choco list -l
         # - coverage run tests.py # import awesome dir problem
       after_success:
-        - codecov
         - deactivate
 
-
-    - name: "Python 3.7 pinned chocolatey package on Windows"
-      os: windows
-      language: shell
-      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
-      before_install:
-        - choco install python --version 3.7.3
-        - python -m pip install virtualenv
-        - virtualenv $HOME/venv
-        - source $HOME/venv/Scripts/activate
-      install:
-        - pip3 install -U pip
-        - pip3 install -U pytest
-        - pip3 install codecov
-        - pip3 install -r requirements.txt
-      script:
-        - pip3 list
-      after_success:
-        - deactivate
+    # - name: "Python 3.8 on Windows"
+    #   os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
+    #   language: shell
+    #   env:
+    #     - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+    #   before_install:
+    #     - choco install python --version 3.8.1
+    #     - python -m pip install --upgrade pip
+    #     - pip3 install --upgrade pytest
+    #     - pip3 install codecov
+    #     - pip3 install virtualenv
+    #     - virtualenv $HOME/venvpy3
+    #     - source $HOME/venvpy3/Scripts/activate
+    #   install:
+    #     - pip3 install -U pip
+    #     - pip3 install -U pytest
+    #     - pip3 install codecov
+    #     - pip3 install -r requirements.txt
+    #   script:
+    #     - pip3 list
+    #     # - coverage run tests.py # import awesome dir problem
+    #   after_success:
+    #     - codecov
+    #     - deactivate
+    #
+    #
+    # - name: "Python 3.7 pinned chocolatey package on Windows"
+    #   os: windows
+    #   language: shell
+    #   env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+    #   before_install:
+    #     - choco install python --version 3.7.3
+    #     - python -m pip install virtualenv
+    #     - virtualenv $HOME/venv
+    #     - source $HOME/venv/Scripts/activate
+    #   install:
+    #     - pip3 install -U pip
+    #     - pip3 install -U pytest
+    #     - pip3 install codecov
+    #     - pip3 install -r requirements.txt
+    #   script:
+    #     - pip3 list
+    #   after_success:
+    #     - deactivate
