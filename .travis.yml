@@ -48,6 +48,12 @@ matrix:
         # - pip3 install codecov
         - pip3 install -r requirements.txt
         - cinst anaconda3
+        # - conda install jupyter
+        # - conda create --name webscrape python=3.6
+        # - activate webscrape
+        # - deactivate
+        # - conda env list
+        # - conda info --envs
       script:
         - choco list -l
         # - coverage run tests.py # import awesome dir problem
