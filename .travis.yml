@@ -50,7 +50,7 @@ matrix:
         # - pip3 install codecov
         # - pip3 install -r requirements.txt
         - cinst miniconda3
-        - export PATH=C:\tools\miniconda3:C:\tools\miniconda3/Scripts:$PATH
+        - export PATH=/c/tools\miniconda3:/c/tools/miniconda3/Scripts:$PATH
         - conda info -a
         # - conda install jupyter
         # - conda create --name webscrape python=3.6
