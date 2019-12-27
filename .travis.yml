@@ -50,6 +50,7 @@ matrix:
         # - pip3 install codecov
         # - pip3 install -r requirements.txt
         - cinst miniconda3
+        - conda info -a
         # - conda install jupyter
         # - conda create --name webscrape python=3.6
         # - activate webscrape
