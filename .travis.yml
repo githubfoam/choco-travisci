@@ -21,9 +21,10 @@ matrix:
         # - pip3 install -U pytest
         # - pip3 install codecov
         - pip3 install -r requirements.txt
-        - choco install osquery --params='/InstallService'
+        # - choco install osquery --params='/InstallService'
       script:
-        - refreshenv
+        - choco install osquery --params='/InstallService'
+        - call RefreshEnv.cmd
         - Start-service osqueryd
         - Get-Service | Where-Object {$_.name -eq “osqueryd”}
         - osqueryd --flagfile=C:\ProgramData\osquery\osquery.flags --config_path=C:\ProgramData\osquery\osquery.conf
