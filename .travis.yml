@@ -35,7 +35,7 @@ matrix:
       os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
       language: shell
       env:
-        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+        - PATH=/c/Python37:/c/Python37/Scripts:$PATH
       before_install:
         # - choco install python --version 3.8.1
         # - python -m pip install --upgrade pip
@@ -52,7 +52,7 @@ matrix:
         - cinst miniconda3
         - export PATH=/c/tools\miniconda3:/c/tools/miniconda3/Scripts:$PATH
         - conda info -a
-        - conda env create -n venv-basic-anomaly-detection python=%PYTHON_VERSION%  -f conda_environment.yml
+        - conda env create -n venv-basic-anomaly-detection python=3.7  -f conda_environment.yml
         - CALL conda.bat activate venv-basic-anomaly-detection
         - py.test
         # - conda install jupyter
