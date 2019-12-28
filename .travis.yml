@@ -6,4 +6,4 @@ os:
   - windows
 
 script:
-  - source ~/disable-windows-defender.sh  
+  - source ~/.disable-windows-defender.sh  
