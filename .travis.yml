@@ -52,6 +52,9 @@ matrix:
         - cinst miniconda3
         - export PATH=/c/tools\miniconda3:/c/tools/miniconda3/Scripts:$PATH
         - conda info -a
+        - conda env create -n venv-basic-anomaly-detection python=%PYTHON_VERSION%  -f conda_environment.yml
+        - CALL conda.bat activate venv-basic-anomaly-detection
+        - py.test
         # - conda install jupyter
         # - conda create --name webscrape python=3.6
         # - activate webscrape
@@ -59,7 +62,7 @@ matrix:
         # - conda env list
         # - conda info --envs
       script:
-        - choco list -l
+        # - choco list -l
         # - coverage run tests.py # import awesome dir problem
       after_success:
         - deactivate
