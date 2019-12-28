@@ -22,6 +22,6 @@ install:
 
 script:
         - pip list
-
+        - python --version
 after_success:
         - deactivate
