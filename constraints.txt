@@ -1,2 +1,1 @@
--c constraints.txt
 testinfra==3.3.0
