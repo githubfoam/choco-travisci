@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ $TRAVIS_OS_NAME = 'windows' ]
 then
-  echo "This is an attempt at disabling Windows Defender. I'm not sure it works."
+  echo "disabling Windows Defender"
   export PROJECTDIR=$(pwd)
   export TEMPDIR=$LOCALAPPDATA\\Temp
   powershell Add-MpPreference -ExclusionPath ${PROJECTDIR}
