@@ -2,6 +2,7 @@
 
 windows_miniconda_task: &windows_miniconda_task
   before_install:
+    - echo $TRAVIS_PYTHON_VERSION
     - python --version
     - choco install miniconda3 openssl.light
     - conda create -n test-environment python=$PYTHON --yes
