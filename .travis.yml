@@ -9,11 +9,17 @@ windows_miniconda_task: &windows_miniconda_task
     # - python --version
     - choco install miniconda3 openssl.light
     # - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION --yes
-    - conda create -n test-environment python=$PYTHON_VENV --yes
-    - . activate test-environment
+    # - conda create -n test-environment python=$PYTHON_VENV --yes
+    - conda env create -n venv-basic-anomaly-detection python=$PYTHON_VENV  -f conda_environment.yml --yes
+    # - . activate test-environment
+    - . activate venv-basic-anomaly-detection
     # - CALL conda.bat activate venv-basic-anomaly-detection
     - conda --version ; python --version ; pip --version
     - python -m pip install --upgrade pip
+windows_jupyter_task: &windows_jupyter_task
+  install:
+      - conda info -a
+      - pytest
 
 matrix:
   fast_finish: true
@@ -62,7 +68,7 @@ matrix:
       os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
       language: shell
       env:
-        - PYTHON_VENV=3.5
+        - PYTHON_VENV=3.7
         - PATH=/c/Python37:/c/Python37/Scripts:$PATH
         - PATH="/c/tools/miniconda3/:/c/tools/miniconda3/Scripts:$PATH"
       <<: *windows_miniconda_task
