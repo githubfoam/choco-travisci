@@ -61,6 +61,7 @@ matrix:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
         - PATH="/c/tools/miniconda3/:/c/tools/miniconda3/Scripts:$PATH"
       <<: *windows_miniconda_task
+      <<: *windows_jupyter_task
       after_success:
         - deactivate
 
@@ -72,6 +73,7 @@ matrix:
         - PATH=/c/Python37:/c/Python37/Scripts:$PATH
         - PATH="/c/tools/miniconda3/:/c/tools/miniconda3/Scripts:$PATH"
       <<: *windows_miniconda_task
+      <<: *windows_jupyter_task
       # before_install:
         # - choco install python --version 3.8.1
         # - python -m pip install --upgrade pip
