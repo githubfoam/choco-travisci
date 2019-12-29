@@ -10,7 +10,7 @@ windows_miniconda_task: &windows_miniconda_task
     - choco install miniconda3 openssl.light
     # - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION --yes
     # - conda create -n test-environment python=$PYTHON_VENV --yes
-    - conda env create -n venv-basic-anomaly-detection python=$PYTHON_VENV  -f conda_environment.yml --yes
+    - conda env create -n venv-basic-anomaly-detection python=$PYTHON_VENV  -f conda_environment.yml
     # - . activate test-environment
     - . activate venv-basic-anomaly-detection
     # - CALL conda.bat activate venv-basic-anomaly-detection
