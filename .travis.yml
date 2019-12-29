@@ -3,12 +3,13 @@ language: generic
 
 windows_miniconda_task: &windows_miniconda_task
   before_install:
-    - echo $TRAVIS_PYTHON_VERSION
-    - bash -c 'echo $TRAVIS_PYTHON_VERSION'
-    - bash -c 'python --version'
-    - python --version
+    # - echo $TRAVIS_PYTHON_VERSION
+    # - bash -c 'echo $TRAVIS_PYTHON_VERSION'
+    # - bash -c 'python --version'
+    # - python --version
     - choco install miniconda3 openssl.light
-    - conda create -n test-environment python=$PYTHON --yes
+    - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION --yes
+    # - conda create -n test-environment python=$PYTHON --yes
     - . activate test-environment
     # - CALL conda.bat activate venv-basic-anomaly-detection
     - conda --version ; python --version ; pip --version
@@ -51,7 +52,7 @@ matrix:
       language: shell
       env:
         - PYTHON=2.7
-        # - PATH=/c/Python37:/c/Python37/Scripts:$PATH
+        - PATH=/c/Python37:/c/Python37/Scripts:$PATH
         - PATH="/c/tools/miniconda3/:/c/tools/miniconda3/Scripts:$PATH"
       <<: *windows_miniconda_task
       # before_install:
