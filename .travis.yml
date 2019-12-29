@@ -1,4 +1,14 @@
 ---
+
+windows_miniconda_task: &windows_miniconda_task
+  before_install:
+    - choco install miniconda3 openssl.light
+    - conda create -n test-environment python=$PYTHON --yes
+    - . activate test-environment
+    # - CALL conda.bat activate venv-basic-anomaly-detection
+    - conda --version ; python --version ; pip --version
+    - python -m pip install --upgrade pip
+
 matrix:
   fast_finish: true
   include:
@@ -35,8 +45,11 @@ matrix:
       os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
       language: shell
       env:
-        - PATH=/c/Python37:/c/Python37/Scripts:$PATH
-      before_install:
+        - PYTHON=2.7
+        # - PATH=/c/Python37:/c/Python37/Scripts:$PATH
+        - PATH="/c/tools/miniconda3/:/c/tools/miniconda3/Scripts:$PATH"
+      <<: *windows_miniconda_task
+      # before_install:
         # - choco install python --version 3.8.1
         # - python -m pip install --upgrade pip
         # - pip3 install --upgrade pytest
@@ -44,14 +57,14 @@ matrix:
         # - pip3 install virtualenv
         # - virtualenv $HOME/venvpy3
         # - source $HOME/venvpy3/Scripts/activate
-      install:
+      # install:
         # - pip3 install -U pip
         # - pip3 install -U pytest
         # - pip3 install codecov
         # - pip3 install -r requirements.txt
-        - cinst miniconda3
-        - export PATH=/c/tools\miniconda3:/c/tools/miniconda3/Scripts:$PATH
-        - conda info -a
+        # - cinst miniconda3
+        # - export PATH=/c/tools\miniconda3:/c/tools/miniconda3/Scripts:$PATH
+        # - conda info -a
         # - conda env create -n venv-basic-anomaly-detection python=3.7  -f conda_environment.yml
         # - CALL conda.bat activate venv-basic-anomaly-detection
         # - py.test
@@ -61,10 +74,10 @@ matrix:
         # - deactivate
         # - conda env list
         # - conda info --envs
-      script:
-        - conda env create -n venv-basic-anomaly-detection python=3.7  -f conda_environment.yml
-        - CALL conda.bat activate venv-basic-anomaly-detection
-        - py.test
+      # script:
+        # - conda env create -n venv-basic-anomaly-detection python=3.7  -f conda_environment.yml
+        # - CALL conda.bat activate venv-basic-anomaly-detection
+        # - py.test
         # - choco list -l
         # - coverage run tests.py # import awesome dir problem
       after_success:
