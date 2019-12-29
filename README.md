@@ -1,6 +1,6 @@
 # choco-travisci
 
- [![Build Status](https://travis-ci.com/githubfoam/choco-travisci.svg?branch=dev)](https://travis-ci.com/githubfoam/choco-travisci)  
+ [![Build Status](https://travis-ci.com/githubfoam/choco-travisci.svg?branch=master)](https://travis-ci.com/githubfoam/choco-travisci)  
 
 ~~~~
 - Python 3.8
