@@ -1,11 +1,13 @@
 import unittest
 
 # import awesome
-
+import admin
 
 class TestMethods(unittest.TestCase):
     def test_add(self):
-        self.assertEqual(smile(), ":)")
+        if not admin.isUserAdmin():
+            admin.runAsAdmin()
+            self.assertEqual(smile(), ":)")
 
     def smile():
         return ":)"
